@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F5IOR | Dashboard Météo v2.9.2</title>
+    <title>F5IOR | Dashboard Météo Expert Ultimate v2.9.2</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-gauges@2.1.7/gauge.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -72,11 +72,15 @@
             text-align: center; font-size: 0.8rem; display: none; overflow: hidden;
         }
 
-        #clothing-advice {
+#clothing-advice {
             width: 95%; max-width: 1700px; margin: 15px 0; padding: 12px;
             background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border-radius: 12px; text-align: center; font-weight: 600; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-radius: 12px; 
+            display: flex; /* Aligne les éléments intérieurement */
+            justify-content: flex-start; /* Aligne le contenu à gauche */
+            align-items: center;
+            font-weight: 600; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .main-container { display: flex; width: 95%; max-width: 1700px; gap: 20px; padding: 10px 0 30px 0; }
@@ -203,7 +207,14 @@
     </div>
 </header>
 
-<div id="clothing-advice">🧥 Conseil : Analyse en cours...</div>
+<div id="clothing-advice">
+    <span id="advice-text">🧥 Conseil : Analyse en cours...</span>
+    <span style="margin-left: 20px; padding-left: 20px; border-left: 1px solid rgba(255,255,255,0.3);">
+        <i class="fas fa-temperature-arrow-down" style="color: #38bdf8;"></i> Min: <span id="sidebar-temp-min">--</span>°C
+        | 
+        <i class="fas fa-temperature-arrow-up" style="color: #ff5f6d;"></i> Max: <span id="sidebar-temp-max">--</span>°C
+    </span>
+</div>
 
 <div class="main-container">
     <div class="gauges-side" id="main-display"></div>
@@ -366,6 +377,7 @@ function runExpertAnalysis(cur) {
 
 const miniAlert = document.getElementById("mini-alert");
 if (alerts.length > 0) { 
+
     // Affiche l'alerte avec un pictogramme
     miniAlert.innerHTML = `⚠️ ${alerts.join(" | ")}`; 
 } else { 
@@ -378,8 +390,9 @@ if (alerts.length > 0) {
     else if (temp < 21) advice = "🧥 Doux : Un pull ou une veste légère.";
     else if (temp < 30) advice = "👕 Chaud : Vêtements légers.";
     else advice = "☀️ Canicule : Restez au frais et hydratez-vous.";
-    if (cur.precipitation > 0.1) advice += " ☂️ Pluie détectée : Sortez le parapluie.";
-    document.getElementById("clothing-advice").textContent = `Conseil : ${advice}`;
+
+// Utiliser target ID pour ne pas effacer le reste du bandeau
+document.getElementById("advice-text").textContent = advice;
 }
 
 async function updateWeather() {
@@ -428,6 +441,13 @@ async function updateWeather() {
         }
 
         runExpertAnalysis(cur);
+
+runExpertAnalysis(cur);
+
+        // --- AJOUTEZ CES LIGNES ICI ---
+        document.getElementById("sidebar-temp-min").textContent = Math.round(daily.temperature_2m_min[7]);
+        document.getElementById("sidebar-temp-max").textContent = Math.round(daily.temperature_2m_max[7]);
+        // ------------------------------
 
         const pressDiff = cur.surface_pressure - hourly.surface_pressure[nowIndex - 3];
         const trendLab = document.getElementById("press-trend-label");
