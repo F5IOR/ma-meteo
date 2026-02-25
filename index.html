@@ -73,7 +73,7 @@
         }
 
         #clothing-advice {
-            width: 95%; max-width: 1700px; margin: 15px 0; padding: 12px;
+            width: 95%; max-width: 1700px; margin: 3px 0; padding: 12px;
             background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border-radius: 12px; 
@@ -83,7 +83,7 @@
             font-weight: 600; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .main-container { display: flex; width: 95%; max-width: 1700px; gap: 20px; padding: 10px 0 30px 0; }
+        .main-container { display: flex; width: 95%; max-width: 1700px; gap: 20px; padding: 8px 0 30px 0; }
         .gauges-side { flex: 3; display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 15px; }
         .widgets-side { flex: 1; display: flex; flex-direction: column; gap: 20px; min-width: 360px; }
 
@@ -211,8 +211,9 @@
                 <option value="44.83,-0.57,Bordeaux">Bordeaux</option>
                 <option value="45.76,4.83,Lyon">Lyon</option>
                 <option value="48.85,2.35,Paris">Paris</option>
-		<option value="43.10,3.08,Gruissan">Gruissan</option>
-		<option value="10.82,106.62,Hô Chi Minh">Hô Chi Minh</option>
+				<option value="47.32,5.04,Dijon">Dijon</option>
+				<option value="43.10,3.08,Gruissan">Gruissan</option>
+				<option value="10.82,106.62,Hô Chi Minh">Hô Chi Minh</option>
                 <option value="21.02,105.83,Hanoï">Hanoï</option>
             </select>
         </div>
@@ -292,7 +293,8 @@
                 <option value="44.83,-0.57,Bordeaux">Bordeaux</option>
                 <option value="45.76,4.83,Lyon">Lyon</option>
                 <option value="48.85,2.35,Paris">Paris</option>
-		<option value="43.10,3.08,Gruissan">Gruissan</option>
+				<option value="43.10,3.08,Gruissan">Gruissan</option>
+				<option value="47.32,5.04,Dijon">Dijon</option>
                 <option value="10.82,106.62,Hô Chi Minh">Hô Chi Minh</option>
                 <option value="21.02,105.83,Hanoï">Hanoï</option>
             </select>
@@ -549,6 +551,4 @@ function syncMobileData() {
 initGauges(); updateWeather(); setInterval(updateWeather, 300000); setInterval(updateClock, 1000);
 </script>
 </body>
-
-	
 </html>
