@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Météo F5IOR</title>
+<title>Météo F5IOR - Mavic Air Pro</title>
 <style>
 :root {
   --bg-color: #0f172a;
@@ -281,7 +281,60 @@ ul#m-tips { padding-left: 18px; margin: 0; font-size: 0.85rem; color: var(--text
 
     <div id="m-alert"></div>
 
-    <!-- ==================== BLOC DRONE PRINCIPAL ==================== -->
+    
+    <!-- ==================== METEO STANDARD ==================== -->
+    <div class="m-section-title">🌡️ Température & Air</div>
+    <div class="m-grid">
+        <div class="mobile-card" id="card-temp">
+            <div class="m-sub">Temp / Ressentie <span class="confidence-badge confidence-high">✔</span></div>
+            <div class="m-val"><span id="m-temp">--</span><span id="m-temp-trend" class="m-trend"></span></div>
+            <div class="m-sub">Ressenti : <span id="m-feel">--</span>°</div>
+        </div>
+        <div class="mobile-card">
+            <div class="m-sub">Air / Humidité <span class="confidence-badge confidence-high">✔</span></div>
+            <div class="m-val" id="m-hum">--%</div>
+            <div class="m-sub">Qualité : <span id="m-aqi">--</span></div>
+        </div>
+    </div>
+
+    <div class="m-section-title">💨 Vent & Pression</div>
+    <div class="m-grid">
+        <div class="mobile-card" id="card-wind">
+            <div class="m-sub">Vent / Rafale <span class="confidence-badge confidence-high">✔</span></div>
+            <div class="m-val" id="m-wind">--</div>
+            <div class="m-sub">Rafale : <span id="m-gust">--</span></div>
+        </div>
+        <div class="mobile-card" id="card-press">
+            <div class="m-sub">Pression <span class="confidence-badge confidence-high">✔</span></div>
+            <div class="m-val"><span id="m-press">--</span><span id="m-press-trend" class="m-trend"></span></div>
+            <div class="m-sub" id="m-press-text">Stable</div>
+        </div>
+    </div>
+
+    <div class="m-section-title">☀️ Soleil & UV</div>
+    <div class="m-grid">
+        <div class="mobile-card" id="card-uv">
+            <div class="m-sub">Index UV <span class="confidence-badge confidence-high">✔</span></div>
+            <div class="m-val" id="m-uv">--</div>
+            <div class="m-sub" id="m-uv-risk">Faible</div>
+        </div>
+        <div class="mobile-card">
+            <div class="m-sub">Cycle Solaire <span class="confidence-badge confidence-high">✔</span></div>
+            <div id="m-sun" style="font-size:0.85rem; font-weight:bold; margin-top:5px; color:var(--accent-color);">Chargement...</div>
+        </div>
+    </div>
+
+    <div class="m-section-title">👕 Conseil Vestimentaire</div>
+    <div class="mobile-card" style="border-left: 4px solid var(--accent-color);">
+        <div id="m-clothe" style="font-size:0.9rem; line-height:1.4;">Analyse des conditions...</div>
+    </div>
+
+    <div class="m-section-title">💡 Conseils Sécurité</div>
+    <div class="mobile-card">
+        <ul id="m-tips"></ul>
+    </div>
+
+<!-- ==================== BLOC DRONE PRINCIPAL ==================== -->
     <div class="m-section-title">🚁 Conditions de vol - DJI Mavic Air</div>
     <div class="mobile-card drone-card" id="drone-card">
         <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -421,58 +474,6 @@ ul#m-tips { padding-left: 18px; margin: 0; font-size: 0.85rem; color: var(--text
         <div style="margin-top:6px; font-size:0.65rem; color:var(--drone-warn); border-top:1px solid var(--glass-border); padding-top:4px;">
             ⚠️ Les données estimées sont des indications. Le pilote reste responsable de sa décision.
         </div>
-    </div>
-
-    <!-- ==================== METEO STANDARD ==================== -->
-    <div class="m-section-title">🌡️ Température & Air</div>
-    <div class="m-grid">
-        <div class="mobile-card" id="card-temp">
-            <div class="m-sub">Temp / Ressentie <span class="confidence-badge confidence-high">✔</span></div>
-            <div class="m-val"><span id="m-temp">--</span><span id="m-temp-trend" class="m-trend"></span></div>
-            <div class="m-sub">Ressenti : <span id="m-feel">--</span>°</div>
-        </div>
-        <div class="mobile-card">
-            <div class="m-sub">Air / Humidité <span class="confidence-badge confidence-high">✔</span></div>
-            <div class="m-val" id="m-hum">--%</div>
-            <div class="m-sub">Qualité : <span id="m-aqi">--</span></div>
-        </div>
-    </div>
-
-    <div class="m-section-title">💨 Vent & Pression</div>
-    <div class="m-grid">
-        <div class="mobile-card" id="card-wind">
-            <div class="m-sub">Vent / Rafale <span class="confidence-badge confidence-high">✔</span></div>
-            <div class="m-val" id="m-wind">--</div>
-            <div class="m-sub">Rafale : <span id="m-gust">--</span></div>
-        </div>
-        <div class="mobile-card" id="card-press">
-            <div class="m-sub">Pression <span class="confidence-badge confidence-high">✔</span></div>
-            <div class="m-val"><span id="m-press">--</span><span id="m-press-trend" class="m-trend"></span></div>
-            <div class="m-sub" id="m-press-text">Stable</div>
-        </div>
-    </div>
-
-    <div class="m-section-title">☀️ Soleil & UV</div>
-    <div class="m-grid">
-        <div class="mobile-card" id="card-uv">
-            <div class="m-sub">Index UV <span class="confidence-badge confidence-high">✔</span></div>
-            <div class="m-val" id="m-uv">--</div>
-            <div class="m-sub" id="m-uv-risk">Faible</div>
-        </div>
-        <div class="mobile-card">
-            <div class="m-sub">Cycle Solaire <span class="confidence-badge confidence-high">✔</span></div>
-            <div id="m-sun" style="font-size:0.85rem; font-weight:bold; margin-top:5px; color:var(--accent-color);">Chargement...</div>
-        </div>
-    </div>
-
-    <div class="m-section-title">👕 Conseil Vestimentaire</div>
-    <div class="mobile-card" style="border-left: 4px solid var(--accent-color);">
-        <div id="m-clothe" style="font-size:0.9rem; line-height:1.4;">Analyse des conditions...</div>
-    </div>
-
-    <div class="m-section-title">💡 Conseils Sécurité</div>
-    <div class="mobile-card">
-        <ul id="m-tips"></ul>
     </div>
 
 <script>
